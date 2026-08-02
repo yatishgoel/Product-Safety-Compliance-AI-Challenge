@@ -1,0 +1,1430 @@
+# Evaluation corpus - the source of truth for every test case.
+#
+# Why this file exists: the 30 provided sample products cannot distinguish a good system
+# from a bad one. Ground truth there is 24 Rejected / 6 Accepted, and a vision model plus
+# ten lines of case-insensitive string equality scores 30/30, because every banned
+# ingredient appears only in the forbidden list's literal surface form. "Benzene",
+# "Caffeine", "Hydrogen Peroxide" and "Butylated" occur zero times across all 20
+# text-layer products. So PubChem, InChIKey and an LLM judge all measure as worthless on
+# the visible data - and the half of the dataset that discriminates was held back.
+#
+# These cases are the held-back half, reconstructed. Tiers escalate in difficulty:
+#   t0_regression  - the provided files. Must stay at 100%.
+#   t1_synonym     - same substance, different naming system. Must Reject.
+#   t2_near_miss   - lookalikes that are different substances. Must Accept.
+#   t3_ocr         - images degraded until OCR corrupts chemical formulas. Must Reject.
+#   t4_layout      - real-world label formats, including negation traps. Mixed.
+#   t5_adversarial - salt swaps, homoglyphs, decorations, other languages. Mixed.
+#   t6_degenerate  - broken input. Must never Accept.
+#   t7_lists       - custom forbidden lists, as the README requires. Mixed.
+#
+# `must_cite` is stricter than the verdict: a system that rejects a product for the wrong
+# ingredient scores zero on citation even though its status matched.
+#
+# Generated once from verified ground truth, then maintained by hand.
+
+cases:
+
+  - id: T0-001
+    tier: t0_regression
+    title: Provided sample P-2025-0001 (pdfs)
+    source: pdfs/P-2025-0001_Pro_Moisturizer.pdf
+    expect:
+      status: Rejected
+      must_cite:
+        - Propylparaben
+    probes: [baseline]
+
+  - id: T0-002
+    tier: t0_regression
+    title: Provided sample P-2025-0002 (pdfs)
+    source: pdfs/P-2025-0002_Deep_Lotion.pdf
+    expect:
+      status: Rejected
+      must_cite:
+        - Methylparaben
+    probes: [baseline]
+
+  - id: T0-003
+    tier: t0_regression
+    title: Provided sample P-2025-0003 (pdfs)
+    source: pdfs/P-2025-0003_Daily_Moisturizer.pdf
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [baseline]
+
+  - id: T0-004
+    tier: t0_regression
+    title: Provided sample P-2025-0004 (texts)
+    source: texts/P-2025-0004_Ultra_Conditioner.txt
+    expect:
+      status: Rejected
+      must_cite:
+        - C6H6
+    probes: [baseline]
+
+  - id: T0-005
+    tier: t0_regression
+    title: Provided sample P-2025-0005 (texts)
+    source: texts/P-2025-0005_Pro_Mask.txt
+    expect:
+      status: Rejected
+      must_cite:
+        - H2O2
+        - Propylparaben
+    probes: [baseline]
+
+  - id: T0-006
+    tier: t0_regression
+    title: Provided sample P-2025-0006 (images)
+    source: images/P-2025-0006_Pure_Lotion.png
+    expect:
+      status: Rejected
+      must_cite:
+        - Coumarin
+        - Propylparaben
+    probes: [baseline]
+
+  - id: T0-007
+    tier: t0_regression
+    title: Provided sample P-2025-0007 (images)
+    source: images/P-2025-0007_Fresh_Lotion.png
+    expect:
+      status: Rejected
+      must_cite:
+        - Butylparaben
+        - C8H10N4O2
+        - Triclosan
+    probes: [baseline]
+
+  - id: T0-008
+    tier: t0_regression
+    title: Provided sample P-2025-0008 (pdfs)
+    source: pdfs/P-2025-0008_Radiant_Shampoo.pdf
+    expect:
+      status: Rejected
+      must_cite:
+        - "1,4-Dioxane"
+        - Butylparaben
+        - C6H6
+    probes: [baseline]
+
+  - id: T0-009
+    tier: t0_regression
+    title: Provided sample P-2025-0009 (pdfs)
+    source: pdfs/P-2025-0009_Pro_Lotion.pdf
+    expect:
+      status: Rejected
+      must_cite:
+        - C8H10N4O2
+    probes: [baseline]
+
+  - id: T0-010
+    tier: t0_regression
+    title: Provided sample P-2025-0010 (pdfs)
+    source: pdfs/P-2025-0010_Deep_Conditioner.pdf
+    expect:
+      status: Rejected
+      must_cite:
+        - Coumarin
+        - Sodium Lauryl Sulfate
+    probes: [baseline]
+
+  - id: T0-011
+    tier: t0_regression
+    title: Provided sample P-2025-0011 (images)
+    source: images/P-2025-0011_Daily_Shampoo.png
+    expect:
+      status: Rejected
+      must_cite:
+        - Coumarin
+    probes: [baseline]
+
+  - id: T0-012
+    tier: t0_regression
+    title: Provided sample P-2025-0012 (texts)
+    source: texts/P-2025-0012_Daily_Moisturizer.txt
+    expect:
+      status: Rejected
+      must_cite:
+        - C6H6
+        - Coumarin
+        - Formaldehyde
+        - Methylparaben
+    probes: [baseline]
+
+  - id: T0-013
+    tier: t0_regression
+    title: Provided sample P-2025-0013 (texts)
+    source: texts/P-2025-0013_Radiant_Lotion.txt
+    expect:
+      status: Rejected
+      must_cite:
+        - Methylparaben
+    probes: [baseline]
+
+  - id: T0-014
+    tier: t0_regression
+    title: Provided sample P-2025-0014 (texts)
+    source: texts/P-2025-0014_Max_Conditioner.txt
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [baseline]
+
+  - id: T0-015
+    tier: t0_regression
+    title: Provided sample P-2025-0015 (pdfs)
+    source: pdfs/P-2025-0015_Gentle_Shampoo.pdf
+    expect:
+      status: Rejected
+      must_cite:
+        - C6H6
+        - Sodium Lauryl Sulfate
+    probes: [baseline]
+
+  - id: T0-016
+    tier: t0_regression
+    title: Provided sample P-2025-0016 (texts)
+    source: texts/P-2025-0016_Max_Conditioner.txt
+    expect:
+      status: Rejected
+      must_cite:
+        - C6H6
+    probes: [baseline]
+
+  - id: T0-017
+    tier: t0_regression
+    title: Provided sample P-2025-0017 (images)
+    source: images/P-2025-0017_Daily_Lotion.png
+    expect:
+      status: Rejected
+      must_cite:
+        - Butylparaben
+        - C8H10N4O2
+    probes: [baseline]
+
+  - id: T0-018
+    tier: t0_regression
+    title: Provided sample P-2025-0018 (pdfs)
+    source: pdfs/P-2025-0018_Pure_Toner.pdf
+    expect:
+      status: Rejected
+      must_cite:
+        - C6H6
+    probes: [baseline]
+
+  - id: T0-019
+    tier: t0_regression
+    title: Provided sample P-2025-0019 (pdfs)
+    source: pdfs/P-2025-0019_Active_Moisturizer.pdf
+    expect:
+      status: Rejected
+      must_cite:
+        - H2O2
+    probes: [baseline]
+
+  - id: T0-020
+    tier: t0_regression
+    title: Provided sample P-2025-0020 (images)
+    source: images/P-2025-0020_Daily_Lotion.png
+    expect:
+      status: Rejected
+      must_cite:
+        - Coumarin
+        - H2O2
+    probes: [baseline]
+
+  - id: T0-021
+    tier: t0_regression
+    title: Provided sample P-2025-0021 (pdfs)
+    source: pdfs/P-2025-0021_Ultra_Lotion.pdf
+    expect:
+      status: Rejected
+      must_cite:
+        - Butylparaben
+        - Propylparaben
+    probes: [baseline]
+
+  - id: T0-022
+    tier: t0_regression
+    title: Provided sample P-2025-0022 (texts)
+    source: texts/P-2025-0022_Radiant_Shampoo.txt
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [baseline]
+
+  - id: T0-023
+    tier: t0_regression
+    title: Provided sample P-2025-0023 (images)
+    source: images/P-2025-0023_Deep_Shampoo.png
+    expect:
+      status: Rejected
+      must_cite:
+        - Butylparaben
+        - H2O2
+    probes: [baseline]
+
+  - id: T0-024
+    tier: t0_regression
+    title: Provided sample P-2025-0024 (texts)
+    source: texts/P-2025-0024_Pro_Conditioner.txt
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [baseline]
+
+  - id: T0-025
+    tier: t0_regression
+    title: Provided sample P-2025-0025 (images)
+    source: images/P-2025-0025_Radiant_Lotion.png
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [baseline]
+
+  - id: T0-026
+    tier: t0_regression
+    title: Provided sample P-2025-0026 (images)
+    source: images/P-2025-0026_Radiant_Sunscreen.png
+    expect:
+      status: Rejected
+      must_cite:
+        - H2O2
+    probes: [baseline]
+
+  - id: T0-027
+    tier: t0_regression
+    title: Provided sample P-2025-0027 (texts)
+    source: texts/P-2025-0027_Daily_Cleanser.txt
+    expect:
+      status: Rejected
+      must_cite:
+        - C6H6
+        - H2O2
+        - Propylparaben
+    probes: [baseline]
+
+  - id: T0-028
+    tier: t0_regression
+    title: Provided sample P-2025-0028 (images)
+    source: images/P-2025-0028_Pro_Conditioner.png
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [baseline]
+
+  - id: T0-029
+    tier: t0_regression
+    title: Provided sample P-2025-0029 (images)
+    source: images/P-2025-0029_Fresh_Cleanser.png
+    expect:
+      status: Rejected
+      must_cite:
+        - Coumarin
+        - H2O2
+        - Sodium Lauryl Sulfate
+    probes: [baseline]
+
+  - id: T0-030
+    tier: t0_regression
+    title: Provided sample P-2025-0030 (texts)
+    source: texts/P-2025-0030_Active_Conditioner.txt
+    expect:
+      status: Rejected
+      must_cite:
+        - Butylparaben
+        - Methylparaben
+        - Sodium Lauryl Sulfate
+    probes: [baseline]
+
+  - id: T1-001
+    tier: t1_synonym
+    title: "C6H6 written as 'Benzene' - formula on list, common name on label"
+    format: txt
+    product_name: Synonym Probe 1
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - Benzene
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - C6H6
+    probes: [cross_namespace]
+
+  - id: T1-002
+    tier: t1_synonym
+    title: "C8H10N4O2 written as 'Caffeine' - formula on list, common name on label"
+    format: txt
+    product_name: Synonym Probe 2
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - Caffeine
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - C8H10N4O2
+    probes: [cross_namespace]
+
+  - id: T1-003
+    tier: t1_synonym
+    title: "H2O2 written as 'Hydrogen Peroxide' - formula on list, common name on label"
+    format: pdf
+    product_name: Synonym Probe 3
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - Hydrogen Peroxide
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - H2O2
+    probes: [cross_namespace]
+
+  - id: T1-004
+    tier: t1_synonym
+    title: "Formaldehyde written as 'CH2O' - name on list, formula on label (reverse direction)"
+    format: txt
+    product_name: Synonym Probe 4
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - CH2O
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - Formaldehyde
+    probes: [reverse_namespace]
+
+  - id: T1-005
+    tier: t1_synonym
+    title: "Formaldehyde written as 'Methanal' - IUPAC name for a banned trivial name"
+    format: txt
+    product_name: Synonym Probe 5
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - Methanal
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - Formaldehyde
+    probes: [iupac]
+
+  - id: T1-006
+    tier: t1_synonym
+    title: "Methylparaben written as 'Methyl 4-hydroxybenzoate' - IUPAC name - OPSIN resolves this offline"
+    format: txt
+    product_name: Synonym Probe 6
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - Methyl 4-hydroxybenzoate
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - Methylparaben
+    probes: [iupac, opsin]
+
+  - id: T1-007
+    tier: t1_synonym
+    title: "Methylparaben written as 'E218' - E-number"
+    format: txt
+    product_name: Synonym Probe 7
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - E218
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - Methylparaben
+    probes: [e_number]
+
+  - id: T1-008
+    tier: t1_synonym
+    title: "Propylparaben written as 'E216' - E-number"
+    format: txt
+    product_name: Synonym Probe 8
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - E216
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - Propylparaben
+    probes: [e_number]
+
+  - id: T1-009
+    tier: t1_synonym
+    title: "BHT written as 'Butylated Hydroxytoluene' - acronym on list, full name on label - PubChem returns 404 for this exact spelling"
+    format: txt
+    product_name: Synonym Probe 9
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - Butylated Hydroxytoluene
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - BHT
+    probes: [acronym, pubchem_gap]
+
+  - id: T1-010
+    tier: t1_synonym
+    title: "BHA written as 'Butylated Hydroxyanisole' - acronym on list, full name on label - PubChem returns 404 for this exact spelling"
+    format: txt
+    product_name: Synonym Probe 10
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - Butylated Hydroxyanisole
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - BHA
+    probes: [acronym, pubchem_gap]
+
+  - id: T1-011
+    tier: t1_synonym
+    title: "BHT written as '2,6-di-tert-butyl-4-methylphenol' - systematic IUPAC name for BHT"
+    format: pdf
+    product_name: Synonym Probe 11
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - "2,6-di-tert-butyl-4-methylphenol"
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - BHT
+    probes: [iupac, opsin]
+
+  - id: T1-012
+    tier: t1_synonym
+    title: "BHT written as '128-37-0' - CAS registry number"
+    format: txt
+    product_name: Synonym Probe 12
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - 128-37-0
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - BHT
+    probes: [cas]
+
+  - id: T1-014
+    tier: t1_synonym
+    title: "Triclosan written as '5-chloro-2-(2,4-dichlorophenoxy)phenol' - systematic name for Triclosan"
+    format: txt
+    product_name: Synonym Probe 14
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - "5-chloro-2-(2,4-dichlorophenoxy)phenol"
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - Triclosan
+    probes: [iupac]
+
+  - id: T1-015
+    tier: t1_synonym
+    title: "1,4-Dioxane written as 'Diethylene oxide' - synonym"
+    format: txt
+    product_name: Synonym Probe 15
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - Diethylene oxide
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - "1,4-Dioxane"
+    probes: [synonym]
+
+  - id: T2-001
+    tier: t2_near_miss
+    title: "'Sodium Laureth Sulfate' must NOT match 'Sodium Lauryl Sulfate' - 0.88 string similarity, ethoxylated - a different chemical"
+    format: txt
+    product_name: Near Miss 1
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Niacinamide
+      - Sodium Laureth Sulfate
+      - Allantoin
+      - Citric Acid
+      - Tocopherol
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [near_miss, fuzzy_trap]
+
+  - id: T2-002
+    tier: t2_near_miss
+    title: "'H2O' must NOT match 'H2O2' - 0.86 string similarity - water is not hydrogen peroxide"
+    format: txt
+    product_name: Near Miss 2
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Niacinamide
+      - H2O
+      - Allantoin
+      - Citric Acid
+      - Tocopherol
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [near_miss, formula_trap]
+
+  - id: T2-003
+    tier: t2_near_miss
+    title: "'Ethylparaben' must NOT match 'Methylparaben' - only methyl/propyl/butyl parabens are banned; ethyl is not"
+    format: txt
+    product_name: Near Miss 3
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Niacinamide
+      - Ethylparaben
+      - Allantoin
+      - Citric Acid
+      - Tocopherol
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [near_miss, family_trap]
+
+  - id: T2-004
+    tier: t2_near_miss
+    title: "'Vanillin' must NOT match 'Methylparaben' - shares molecular formula C8H8O3 with methylparaben"
+    format: pdf
+    product_name: Near Miss 4
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Niacinamide
+      - Vanillin
+      - Allantoin
+      - Citric Acid
+      - Tocopherol
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [isomer_trap]
+
+  - id: T2-005
+    tier: t2_near_miss
+    title: "'C8H8O3' shares a formula with Methylparaben and 1529 others - too ambiguous to reject, too suspicious to clear"
+    format: txt
+    product_name: Near Miss 5
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Niacinamide
+      - C8H8O3
+      - Allantoin
+      - Citric Acid
+      - Tocopherol
+    expect:
+      status: Needs Review
+      must_cite: []
+    probes: [isomer_trap, formula_only]
+
+  - id: T2-006
+    tier: t2_near_miss
+    title: "'Fulvene' must NOT match 'C6H6' - C6H6 isomer - distinct structure, defeats formula-to-CID overreach"
+    format: txt
+    product_name: Near Miss 6
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Niacinamide
+      - Fulvene
+      - Allantoin
+      - Citric Acid
+      - Tocopherol
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [isomer_trap]
+
+  - id: T2-007
+    tier: t2_near_miss
+    title: "'Toluene' must NOT match 'BHT' - substring of 'hydroxytoluene'"
+    format: txt
+    product_name: Near Miss 7
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Niacinamide
+      - Toluene
+      - Allantoin
+      - Citric Acid
+      - Tocopherol
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [substring_trap]
+
+  - id: T2-008
+    tier: t2_near_miss
+    title: "'Anisole' must NOT match 'BHA' - substring of 'hydroxyanisole'"
+    format: pdf
+    product_name: Near Miss 8
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Niacinamide
+      - Anisole
+      - Allantoin
+      - Citric Acid
+      - Tocopherol
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [substring_trap]
+
+  - id: T2-009
+    tier: t2_near_miss
+    title: "'Benzyl Alcohol' must NOT match 'C6H6' - 'benz' family, not benzene"
+    format: txt
+    product_name: Near Miss 9
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Niacinamide
+      - Benzyl Alcohol
+      - Allantoin
+      - Citric Acid
+      - Tocopherol
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [substring_trap]
+
+  - id: T2-012
+    tier: t2_near_miss
+    title: "'Urea' must NOT match 'Formaldehyde' - plain urea is harmless; only diazolidinyl/imidazolidinyl urea release formaldehyde"
+    format: pdf
+    product_name: Near Miss 12
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Niacinamide
+      - Urea
+      - Allantoin
+      - Citric Acid
+      - Tocopherol
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [near_miss]
+
+  - id: T2-013
+    tier: t2_near_miss
+    title: "'Curcumin' must NOT match 'Coumarin' - near-anagram of a banned entry"
+    format: txt
+    product_name: Near Miss 13
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Niacinamide
+      - Curcumin
+      - Allantoin
+      - Citric Acid
+      - Tocopherol
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [near_miss]
+
+  - id: T3-001
+    tier: t3_ocr
+    title: "'H2O2' degraded: low resolution"
+    format: png
+    product_name: Degraded Label 1
+    ingredients:
+      - Aqua
+      - Glycerin
+      - H2O2
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - H2O2
+    probes: [ocr_corruption]
+    render: {dpi: 72}
+
+  - id: T3-002
+    tier: t3_ocr
+    title: "'C8H10N4O2' degraded: low resolution plus skew"
+    format: png
+    product_name: Degraded Label 2
+    ingredients:
+      - Aqua
+      - Glycerin
+      - C8H10N4O2
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - C8H10N4O2
+    probes: [ocr_corruption]
+    render: {dpi: 72, rotate: 1.5}
+
+  - id: T3-003
+    tier: t3_ocr
+    # C6H6 contains no letter O, so it is immune to the O->0 confusion that defines this
+    # tier - the corpus self-check rejected it as non-discriminating. Of the three forbidden
+    # formulas, only H2O2 and C8H10N4O2 are actually vulnerable.
+    title: "'C8H10N4O2' degraded: JPEG compression artefacts"
+    format: png
+    product_name: Degraded Label 3
+    ingredients:
+      - Aqua
+      - Glycerin
+      - C8H10N4O2
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - C8H10N4O2
+    probes: [ocr_corruption]
+    render: {jpeg_quality: 35}
+
+  - id: T3-004
+    tier: t3_ocr
+    title: "'H2O2' degraded: condensed font - worst case for O/0"
+    format: png
+    product_name: Degraded Label 4
+    ingredients:
+      - Aqua
+      - Glycerin
+      - H2O2
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - H2O2
+    probes: [ocr_corruption]
+    render: {font: Arial Narrow, dpi: 96}
+
+  - id: T3-007
+    tier: t3_ocr
+    title: "'H2O2' degraded: skew plus noise"
+    format: png
+    product_name: Degraded Label 7
+    ingredients:
+      - Aqua
+      - Glycerin
+      - H2O2
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - H2O2
+    probes: [ocr_corruption]
+    render: {rotate: 2.0, noise: 0.03}
+
+  - id: T3-008
+    tier: t3_ocr
+    title: "'Coumarin' degraded: a name rather than a formula - control case"
+    format: png
+    product_name: Degraded Label 8
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Coumarin
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - Coumarin
+    probes: [ocr_corruption]
+    render: {dpi: 72, noise: 0.04}
+
+  - id: T3-009
+    tier: t3_ocr
+    title: Scanned PDF with no text layer - forces the extraction fallback
+    format: pdf_scanned
+    product_name: Scanned Label
+    ingredients:
+      - Aqua
+      - Glycerin
+      - H2O2
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - H2O2
+    probes: [ocr_corruption, no_text_layer]
+    render: {dpi: 110}
+
+  - id: T3-010
+    tier: t3_ocr
+    title: Multiple corrupted formulas in one label
+    format: png
+    product_name: Multi Formula Label
+    ingredients:
+      - Aqua
+      - C8H10N4O2
+      - C16H32O2
+      - H2O2
+      - C20H40O2
+      - Glycerin
+    expect:
+      status: Rejected
+      must_cite:
+        - C8H10N4O2
+        - H2O2
+    probes: [ocr_corruption]
+    render: {dpi: 72, noise: 0.03}
+
+  - id: T4-001
+    tier: t4_layout
+    title: Inline comma-separated INCI panel - how real labels are written
+    format: txt
+    product_name: Inline Panel
+    raw_body: "Product Name: Inline Panel\nSKU: T4INLINE\n\nINGREDIENTS: Aqua, Glycerin, Coumarin, Parfum, Tocopherol.\n"
+    expect:
+      status: Rejected
+      must_cite:
+        - Coumarin
+    probes: [inline_list]
+
+  - id: T4-002
+    tier: t4_layout
+    title: "Header variant: 'Composition:'"
+    format: txt
+    product_name: Composition Header
+    raw_body: "Product Name: Composition Header\nSKU: T4COMP\n\nComposition:\n- Aqua\n- Methylparaben\n- Glycerin\n"
+    expect:
+      status: Rejected
+      must_cite:
+        - Methylparaben
+    probes: [header_variant]
+
+  - id: T4-005
+    tier: t4_layout
+    title: No ingredients header at all - a bare bullet list
+    format: txt
+    product_name: No Header
+    raw_body: "Product Name: No Header\nSKU: T4NOHD\n\n- Aqua\n- Glycerin\n- Propylparaben\n- Tocopherol\n"
+    expect:
+      status: Rejected
+      must_cite:
+        - Propylparaben
+    probes: [no_header]
+
+  - id: T4-006
+    tier: t4_layout
+    title: Ingredients embedded in a prose paragraph
+    format: txt
+    product_name: Prose Label
+    raw_body: "Product Name: Prose Label\nSKU: T4PROSE\n\nIngredients: this gentle formula combines Aqua, Glycerin, Coumarin and Tocopherol for daily use.\n"
+    expect:
+      status: Rejected
+      must_cite:
+        - Coumarin
+    probes: [prose]
+
+  - id: T4-007
+    tier: t4_layout
+    title: Multi-page PDF with the ingredient list on page 2
+    format: pdf
+    product_name: Two Page Label
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Formaldehyde
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - Formaldehyde
+    probes: [multipage]
+    render: {page_break_before_ingredients: True}
+
+  - id: T4-009
+    tier: t4_layout
+    title: Two-column PDF layout
+    format: pdf
+    product_name: Two Column Label
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - Butylparaben
+      - Tocopherol
+      - Allantoin
+      - Niacinamide
+      - Citric Acid
+    expect:
+      status: Rejected
+      must_cite:
+        - Butylparaben
+    probes: [columns]
+    render: {columns: 2}
+
+  - id: T4-011
+    tier: t4_layout
+    # No blank line before the negation block, on purpose. With one, the parser's
+    # blank-line-ends-a-block rule already discards it and the case passes even if negation
+    # handling is deleted entirely - mutation testing showed all three negation cases were
+    # passing for the wrong reason. Butted directly against the list, only real negation
+    # handling saves it.
+    title: "NEGATION TRAP: 'Formulated without' butted against the list - a substring search rejects the safest product on the shelf"
+    format: txt
+    product_name: Free From Label
+    raw_body: "Product Name: Free From Label\nSKU: T4NEG1\n\nIngredients:\n- Aqua\n- Glycerin\n- Tocopherol\nFormulated without: Formaldehyde, Coumarin, Parabens\n"
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [negation]
+
+  - id: T4-012
+    tier: t4_layout
+    title: "NEGATION TRAP: 'free from' claim in marketing copy"
+    format: txt
+    product_name: Marketing Claim Label
+    raw_body: "Product Name: Marketing Claim Label\nSKU: T4NEG2\n\nDescription:\nThis product is free from BHT and Triclosan.\n\nIngredients:\n- Aqua\n- Panthenol\n- Allantoin\n"
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [negation]
+
+  - id: T4-013
+    tier: t4_layout
+    title: "NEGATION TRAP: banned substance named in marketing copy outside the ingredient block"
+    format: txt
+    product_name: Comparative Copy Label
+    raw_body: "Product Name: Comparative Copy Label\nSKU: T4NEG3\n\nDescription:\nUnlike ordinary shampoos that rely on Sodium Lauryl Sulfate, our formula uses gentle plant-derived surfactants.\n\nIngredients:\n- Aqua\n- Cocamidopropyl Betaine\n- Glycerin\n"
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [negation, context]
+
+  - id: T5-001
+    tier: t5_adversarial
+    title: "Salt substitution: potassium for sodium"
+    format: txt
+    product_name: Salt Swap K
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Potassium Lauryl Sulfate
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - Sodium Lauryl Sulfate
+    probes: [salt_form]
+
+  - id: T5-002
+    tier: t5_adversarial
+    title: "Salt substitution: ammonium for sodium"
+    format: txt
+    product_name: Salt Swap NH4
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Ammonium Lauryl Sulfate
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - Sodium Lauryl Sulfate
+    probes: [salt_form]
+
+  - id: T5-004
+    tier: t5_adversarial
+    title: "Formaldehyde releaser: DMDM Hydantoin"
+    format: txt
+    product_name: Releaser DMDM
+    ingredients:
+      - Aqua
+      - Glycerin
+      - DMDM Hydantoin
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Needs Review
+      must_cite: []
+    probes: [releaser]
+
+  - id: T5-007
+    tier: t5_adversarial
+    title: Concentration suffix on the ingredient
+    format: txt
+    product_name: Concentration Label
+    ingredients:
+      - Aqua
+      - Glycerin
+      - "Coumarin (0.05%)"
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - Coumarin
+    probes: [decoration]
+
+  - id: T5-008
+    tier: t5_adversarial
+    title: CAS number in parentheses
+    format: txt
+    product_name: CAS Parenthetical
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Benzene (71-43-2)
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - C6H6
+    probes: [decoration, cross_namespace]
+
+  - id: T5-009
+    tier: t5_adversarial
+    title: Footnote marker on the ingredient
+    format: txt
+    product_name: Footnote Label
+    ingredients:
+      - Aqua
+      - Glycerin
+      - "Coumarin*"
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - Coumarin
+    probes: [decoration]
+
+  - id: T5-010
+    tier: t5_adversarial
+    title: All-caps ingredient name
+    format: txt
+    product_name: Caps Label
+    ingredients:
+      - Aqua
+      - Glycerin
+      - METHYLPARABEN
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - Methylparaben
+    probes: [casing]
+
+  - id: T5-011
+    tier: t5_adversarial
+    title: "Homoglyph attack: Cyrillic C (U+0421) and H (U+041D) render identically to Latin"
+    format: txt
+    product_name: Homoglyph Label
+    ingredients:
+      - Aqua
+      - Glycerin
+      - С6Н6
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Rejected
+      must_cite:
+        - C6H6
+    probes: [homoglyph]
+
+  - id: T5-012
+    tier: t5_adversarial
+    title: Spanish-language label
+    format: txt
+    product_name: Etiqueta Espanola
+    raw_body: "Product Name: Etiqueta Espanola\nSKU: T5ES\n\nIngredientes:\n- Agua\n- Glicerina\n- Benceno\n- Tocoferol\n"
+    expect:
+      status: Rejected
+      must_cite:
+        - C6H6
+    probes: [multilingual]
+
+  - id: T6-001
+    tier: t6_degenerate
+    title: Empty text file
+    format: txt
+    product_name: Empty
+    ingredients:
+    expect:
+      status: Needs Review
+      must_cite: []
+    probes: [fail_closed]
+
+  - id: T6-002
+    tier: t6_degenerate
+    title: Truncated / corrupt PDF
+    format: pdf
+    product_name: Corrupt PDF
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    expect:
+      status: Needs Review
+      must_cite: []
+    probes: [fail_closed]
+    render: {truncate: True}
+
+  - id: T6-003
+    tier: t6_degenerate
+    title: Image containing no text
+    format: png
+    product_name: Blank Image
+    ingredients:
+    expect:
+      status: Needs Review
+      must_cite: []
+    probes: [fail_closed]
+    render: {blank: True}
+
+  - id: T6-004
+    tier: t6_degenerate
+    title: Product metadata present but no ingredient section
+    format: txt
+    product_name: No Ingredients
+    raw_body: "Product ID: T6-004\nProduct Name: No Ingredients\nSKU: T6NOING\n\nDescription:\nA lovely product.\n"
+    expect:
+      status: Needs Review
+      must_cite: []
+    probes: [fail_closed]
+
+  - id: T6-005
+    tier: t6_degenerate
+    title: Ingredients header present but the list is empty
+    format: txt
+    product_name: Empty List
+    raw_body: "Product Name: Empty List\nSKU: T6EMPTY\n\nIngredients / Chemical Formulas:\n\nDirections: apply daily.\n"
+    expect:
+      status: Needs Review
+      must_cite: []
+    probes: [fail_closed]
+
+  - id: T6-008
+    tier: t6_degenerate
+    title: Label with no recognisable structure
+    format: txt
+    product_name: Unstructured
+    raw_body: "aksjdhaksjd 918273 !!! ??? zzz\nqqqq wwww eeee\n"
+    expect:
+      status: Needs Review
+      must_cite: []
+    probes: [fail_closed]
+
+  - id: T7-001
+    tier: t7_lists
+    title: Custom list written in NAMES where the default uses formulas - the reverse direction
+    format: txt
+    product_name: Reverse List Probe
+    ingredients:
+      - Aqua
+      - Glycerin
+      - C6H6
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    forbidden_list: names.csv
+    expect:
+      status: Rejected
+      must_cite:
+        - Benzene
+    probes: [custom_list, reverse_namespace]
+
+  - id: T7-002
+    tier: t7_lists
+    title: Custom list written entirely as CAS numbers
+    format: txt
+    product_name: CAS List Probe
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Benzene
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    forbidden_list: cas.csv
+    expect:
+      status: Rejected
+      must_cite:
+        - 71-43-2
+    probes: [custom_list, cas]
+
+  - id: T7-003
+    tier: t7_lists
+    title: Empty forbidden list - nothing can be banned
+    format: txt
+    product_name: Empty List Probe
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Benzene
+      - Coumarin
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    forbidden_list: empty.csv
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [custom_list]
+
+  - id: T7-005
+    tier: t7_lists
+    title: "Messy list: duplicates, mixed case, stray whitespace and quoting"
+    format: txt
+    product_name: Messy List Probe
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Coumarin
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    forbidden_list: messy.csv
+    expect:
+      status: Rejected
+      must_cite:
+        - Coumarin
+    probes: [custom_list]
+
+  - id: T7-006
+    tier: t7_lists
+    title: List containing an entry that resolves nowhere
+    format: txt
+    product_name: Unresolvable Entry Probe
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Niacinamide
+      - Allantoin
+      - Citric Acid
+      - Tocopherol
+    forbidden_list: unresolvable.csv
+    expect:
+      status: Accepted
+      must_cite: []
+    probes: [custom_list, robustness]
+
+  - id: T7-007
+    tier: t7_lists
+    title: "List bans a normally-harmless ingredient - the list is authoritative, not our opinion"
+    format: txt
+    product_name: Aqua Banned Probe
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Panthenol
+    forbidden_list: aqua.csv
+    expect:
+      status: Rejected
+      must_cite:
+        - Aqua
+    probes: [custom_list]
+
+  - id: T7-008
+    tier: t7_lists
+    title: List supplied as a JSON array rather than CSV
+    format: txt
+    product_name: JSON List Probe
+    ingredients:
+      - Aqua
+      - Glycerin
+      - Coumarin
+      - Panthenol
+      - Xanthan Gum
+      - Tocopherol
+    forbidden_list: list.json
+    expect:
+      status: Rejected
+      must_cite:
+        - Coumarin
+    probes: [custom_list]

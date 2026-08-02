@@ -1,0 +1,573 @@
+{
+ "claims": [
+  {
+   "case": "T1-001",
+   "entry": "C6H6",
+   "matched_ingredient": "Benzene",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T1-002",
+   "entry": "C8H10N4O2",
+   "matched_ingredient": "Caffeine",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T1-003",
+   "entry": "H2O2",
+   "matched_ingredient": "Hydrogen Peroxide",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T1-004",
+   "entry": "Formaldehyde",
+   "matched_ingredient": "CH2O",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T1-005",
+   "entry": "Formaldehyde",
+   "matched_ingredient": "Methanal",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T1-006",
+   "entry": "Methylparaben",
+   "matched_ingredient": "Methyl 4-hydroxybenzoate",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T1-007",
+   "entry": "Methylparaben",
+   "matched_ingredient": "E218",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T1-008",
+   "entry": "Propylparaben",
+   "matched_ingredient": null,
+   "verdict": "unverified"
+  },
+  {
+   "case": "T1-009",
+   "entry": "BHT",
+   "matched_ingredient": null,
+   "verdict": "unverified"
+  },
+  {
+   "case": "T1-010",
+   "entry": "BHA",
+   "matched_ingredient": null,
+   "verdict": "unverified"
+  },
+  {
+   "case": "T1-011",
+   "entry": "BHT",
+   "matched_ingredient": "2,6-di-tert-butyl-4-methylphenol",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T1-012",
+   "entry": "BHT",
+   "matched_ingredient": "128-37-0",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T1-014",
+   "entry": "Triclosan",
+   "matched_ingredient": null,
+   "verdict": "unverified"
+  },
+  {
+   "case": "T1-015",
+   "entry": "1,4-Dioxane",
+   "matched_ingredient": null,
+   "verdict": "unverified"
+  },
+  {
+   "case": "T3-001",
+   "entry": "H2O2",
+   "matched_ingredient": "H2O2",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T3-002",
+   "entry": "C8H10N4O2",
+   "matched_ingredient": "C8H10N4O2",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T3-003",
+   "entry": "C8H10N4O2",
+   "matched_ingredient": "C8H10N4O2",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T3-004",
+   "entry": "H2O2",
+   "matched_ingredient": "H2O2",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T3-007",
+   "entry": "H2O2",
+   "matched_ingredient": "H2O2",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T3-008",
+   "entry": "Coumarin",
+   "matched_ingredient": "Coumarin",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T3-009",
+   "entry": "H2O2",
+   "matched_ingredient": "H2O2",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T3-010",
+   "entry": "C8H10N4O2",
+   "matched_ingredient": "C8H10N4O2",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T3-010",
+   "entry": "H2O2",
+   "matched_ingredient": "H2O2",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T4-007",
+   "entry": "Formaldehyde",
+   "matched_ingredient": "Formaldehyde",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T4-009",
+   "entry": "Butylparaben",
+   "matched_ingredient": "Butylparaben",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T5-001",
+   "entry": "Sodium Lauryl Sulfate",
+   "matched_ingredient": null,
+   "verdict": "unverified"
+  },
+  {
+   "case": "T5-002",
+   "entry": "Sodium Lauryl Sulfate",
+   "matched_ingredient": null,
+   "verdict": "unverified"
+  },
+  {
+   "case": "T5-007",
+   "entry": "Coumarin",
+   "matched_ingredient": "Coumarin (0.05%)",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T5-008",
+   "entry": "C6H6",
+   "matched_ingredient": "Benzene (71-43-2)",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T5-009",
+   "entry": "Coumarin",
+   "matched_ingredient": "Coumarin*",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T5-010",
+   "entry": "Methylparaben",
+   "matched_ingredient": "METHYLPARABEN",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T5-011",
+   "entry": "C6H6",
+   "matched_ingredient": "\u04216\u041d6",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T7-001",
+   "entry": "Benzene",
+   "matched_ingredient": "C6H6",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T7-002",
+   "entry": "71-43-2",
+   "matched_ingredient": "Benzene",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T7-005",
+   "entry": "coumarin",
+   "matched_ingredient": "Coumarin",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T7-007",
+   "entry": "Aqua",
+   "matched_ingredient": "Aqua",
+   "verdict": "confirmed"
+  },
+  {
+   "case": "T7-008",
+   "entry": "Coumarin",
+   "matched_ingredient": "Coumarin",
+   "verdict": "confirmed"
+  }
+ ],
+ "resolved": {
+  "1,4-Dioxane": [
+   31275
+  ],
+  "128-37-0": [
+   31404
+  ],
+  "2,6-di-tert-butyl-4-methylphenol": [
+   31404
+  ],
+  "5-chloro-2-(2,4-dichlorophenoxy)phenol": null,
+  "71-43-2": [
+   241
+  ],
+  "Ammonium Lauryl Sulfate": [
+   16700
+  ],
+  "Aqua": [
+   962
+  ],
+  "BHA": [
+   8456
+  ],
+  "BHT": [
+   31404
+  ],
+  "Benzene": [
+   241
+  ],
+  "Benzene (71-43-2)": [
+   241
+  ],
+  "Butylated Hydroxyanisole": null,
+  "Butylated Hydroxytoluene": null,
+  "Butylparaben": [
+   7184
+  ],
+  "C16H32O2": [
+   985,
+   31283,
+   12531,
+   32912,
+   36247,
+   61294,
+   101338,
+   61015,
+   23518,
+   135369651,
+   243691,
+   245572,
+   82635,
+   23906,
+   12358530,
+   18987871,
+   22717736,
+   101131,
+   21206,
+   22234964,
+   222518,
+   104170,
+   146501,
+   2802985,
+   5077204,
+   91424,
+   12424127,
+   151503,
+   10220741,
+   522422,
+   11594069,
+   21693072,
+   53432384,
+   53437836,
+   91425,
+   5282693,
+   22251820,
+   56615674,
+   90727397,
+   169366,
+   53740714,
+   138943,
+   9881577,
+   12358538,
+   16213305,
+   16213579,
+   16217538,
+   22094668,
+   54478543,
+   12050963
+  ],
+  "C6H6": [
+   241,
+   69402,
+   71601,
+   61222,
+   137727,
+   123097,
+   11309472,
+   11332416,
+   16212250,
+   136323,
+   136470,
+   137864,
+   138254,
+   138446,
+   5367222,
+   98808,
+   139149,
+   139150,
+   141506,
+   141762,
+   12740771,
+   12208570,
+   16217359,
+   143919,
+   12305738,
+   22138104,
+   5463264,
+   20528727,
+   59941566,
+   144032,
+   144598,
+   85607149,
+   11815814,
+   12196274,
+   12460045,
+   13000141,
+   13000143,
+   13000144,
+   14315806,
+   14937194,
+   15686076,
+   15874927,
+   21296230,
+   21758171,
+   22957582,
+   45052197,
+   53676512,
+   53723443,
+   56621421,
+   71308903
+  ],
+  "C8H10N4O2": [
+   2519,
+   1676,
+   72700,
+   81648,
+   1326,
+   95498,
+   95030,
+   88426,
+   128525,
+   67294,
+   12905388,
+   2826612,
+   12795759,
+   9603659,
+   135502736,
+   135544980,
+   506102,
+   245687,
+   5524597,
+   70686507,
+   15061,
+   15931309,
+   147681,
+   79438,
+   9661062,
+   271257,
+   73995304,
+   10241810,
+   135430293,
+   135486206,
+   362127,
+   396525,
+   606618,
+   135405391,
+   470388,
+   2818547,
+   10241711,
+   15423159,
+   19008965,
+   44341478,
+   71770665,
+   13001298,
+   13001300,
+   136270304,
+   7408484,
+   792759,
+   135408026,
+   458923,
+   3074552,
+   135770221
+  ],
+  "CH2O": [
+   712,
+   123127,
+   11029752,
+   6432217,
+   141095,
+   6451503,
+   12971525,
+   90474223,
+   451248,
+   11622326,
+   13001565,
+   15242108,
+   71309205,
+   140680381,
+   161622049,
+   90471743,
+   101174516,
+   101362266,
+   101995930,
+   177386657
+  ],
+  "Caffeine": [
+   2519
+  ],
+  "Coumarin": [
+   323
+  ],
+  "Coumarin (0.05%)": [
+   323
+  ],
+  "Coumarin*": [
+   323
+  ],
+  "Diethylene oxide": [
+   8028
+  ],
+  "E216": null,
+  "E218": [
+   7456
+  ],
+  "Formaldehyde": [
+   712
+  ],
+  "Glycerin": [
+   753
+  ],
+  "H2O2": [
+   784,
+   22326046,
+   5460468,
+   126956702,
+   14002094,
+   15793810,
+   22789539,
+   56846506,
+   58436248,
+   58491421,
+   59806483,
+   131711465,
+   140676596,
+   159708239,
+   20831700
+  ],
+  "Hydrogen Peroxide": [
+   784
+  ],
+  "METHYLPARABEN": [
+   7456
+  ],
+  "Methanal": [
+   712
+  ],
+  "Methyl 4-hydroxybenzoate": [
+   7456
+  ],
+  "Methylparaben": [
+   7456
+  ],
+  "Panthenol": [
+   4678
+  ],
+  "Potassium Lauryl Sulfate": [
+   23669623
+  ],
+  "Propylparaben": [
+   7175
+  ],
+  "Sodium Lauryl Sulfate": [
+   3423265
+  ],
+  "Tocopherol": [
+   14986
+  ],
+  "Triclosan": [
+   5564
+  ],
+  "Xanthan Gum": null,
+  "coumarin": [
+   323
+  ],
+  "\u04216\u041d6": [
+   241,
+   69402,
+   71601,
+   61222,
+   137727,
+   123097,
+   11309472,
+   11332416,
+   16212250,
+   136323,
+   136470,
+   137864,
+   138254,
+   138446,
+   5367222,
+   98808,
+   139149,
+   139150,
+   141506,
+   141762,
+   12740771,
+   12208570,
+   16217359,
+   143919,
+   12305738,
+   22138104,
+   5463264,
+   20528727,
+   59941566,
+   144032,
+   144598,
+   85607149,
+   11815814,
+   12196274,
+   12460045,
+   13000141,
+   13000143,
+   13000144,
+   14315806,
+   14937194,
+   15686076,
+   15874927,
+   21296230,
+   21758171,
+   22957582,
+   45052197,
+   53676512,
+   53723443,
+   56621421,
+   71308903
+  ]
+ }
+}
