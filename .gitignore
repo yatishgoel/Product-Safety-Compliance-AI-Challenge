@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+ui/node_modules/
+ui/*.tsbuildinfo
+
+# Rendered from eval/corpus/manifest.yaml by `make corpus` - derived, not source.
+eval/corpus/generated/
+
+# Diagram sources, exports and the presentation script - kept locally, not shipped.
+docs/
